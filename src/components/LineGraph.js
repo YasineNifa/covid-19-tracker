@@ -46,7 +46,7 @@ const options = {
       ],
     },
   };
-const LineGraph = () => {
+const LineGraph = ( {caseType = 'cases' } ) => {
     const [data, setData] = useState({})
     //https://disease.sh/v3/covid-19/historical/all?lastdays=120
     
@@ -78,25 +78,23 @@ const LineGraph = () => {
         }
         fetchData();
         
-    },[])
+    },[caseType])
 
     
 
     return (
         <div>
-            <h1>I am a graph</h1>
-            {data?.length > 0 &&(
-
-            
-            <Line 
-            data={{
-                datasets:[{
-                    borderColor : "#CC1034",
-                    backgroundColor: "rgba(204,16,52,0.5)",
-                    data:data
-                }]
-            }}
-            options={options}/>
+            {/* <h1>I am a graph</h1> */}
+            {data?.length > 0 && (
+                <Line 
+                data={{
+                    datasets:[{
+                        borderColor : "#CC1034",
+                        backgroundColor: "rgba(204,16,52,0.5)",
+                        data:data,
+                    }]
+                }}
+                options={options}/>
             )}
             
         </div>
